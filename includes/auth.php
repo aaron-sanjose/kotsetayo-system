@@ -1,6 +1,6 @@
 <?php
 /**
- * CarBuy - Admin Authentication Helper (middleware)
+ * KotseTayo - Admin Authentication Helper (middleware)
  *
  * Include on every admin page. Redirects to login when not authenticated.
  * Also provides helpers for logged-in admin data and logout.

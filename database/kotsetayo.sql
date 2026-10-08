@@ -1,6 +1,6 @@
 -- ============================================================
--- CarBuy - Car Buy & Sell Management System
--- Database: carbuy
+-- KotseTayo - Car Buy & Sell Management System
+-- Database: kotsetayo
 -- Import this file into phpMyAdmin (XAMPP) to set up the system.
 --
 -- SAMPLE ADMIN ACCOUNT
@@ -9,11 +9,11 @@
 --   IMPORTANT: Change this password after your first login!
 -- ============================================================
 
-CREATE DATABASE IF NOT EXISTS `carbuy`
+CREATE DATABASE IF NOT EXISTS `kotsetayo`
   CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci;
 
-USE `carbuy`;
+USE `kotsetayo`;
 
 -- ------------------------------------------------------------
 -- Table: admins

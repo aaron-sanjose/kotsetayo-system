@@ -1,11 +1,11 @@
 /* ============================================================
-   CarBuy - Public Stylesheet
+   KotseTayo - Public Stylesheet
    Modern automotive dealership design (white/black/gray)
    ============================================================ */
 :root {
   --primary: #1a1a1a;
-  --accent: #d4af37;
-  --accent-dark: #b8962e;
+  --accent: #ffa31a;
+  --accent-dark: #da8b16;
   --dark: #111111;
   --light: #f5f5f5;
   --gray: #6b6b6b;
@@ -42,8 +42,8 @@ ul { list-style: none; }
 
 /* ---------- Header / Navbar ---------- */
 .site-header {
-  background: #fff;
-  border-bottom: 1px solid var(--border);
+  background: #000;
+  border-bottom: 1px solid #1a1a1a;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -60,21 +60,30 @@ ul { list-style: none; }
   width: 40px; height: 40px; border-radius: 10px;
   background: var(--primary); color: #fff; font-weight: 800; font-size: 18px;
 }
+/* Brand logo image (replaces the old "KT" text mark) */
+img.brand-mark {
+  height: 40px;
+  width: auto; /* KotseTayo.png is a wide 2172x724 banner; keep its aspect ratio */
+  object-fit: contain;
+  background: transparent;
+  border-radius: 0;
+  vertical-align: middle;
+}
 .brand-text { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
 .brand-text span { color: var(--accent); }
 
 .main-nav { display: flex; align-items: center; gap: 28px; }
-.main-nav a { font-weight: 500; color: #333; font-size: 15px; transition: color .2s; }
-.main-nav a:hover { color: var(--accent-dark); }
-.main-nav a.active { color: var(--accent-dark); font-weight: 700; }
+.main-nav a { font-weight: 500; color: #fff; font-size: 15px; transition: color .2s; }
+.main-nav a:hover { color: var(--accent); }
+.main-nav a.active { color: var(--accent); font-weight: 700; }
 .nav-admin-btn {
-  background: var(--primary); color: #fff !important;
+  background: var(--accent); color: #000 !important;
   padding: 9px 16px; border-radius: var(--radius-sm);
 }
-.nav-admin-btn:hover { background: var(--accent-dark); }
+.nav-admin-btn:hover { background: var(--accent-dark); color: #000 !important; }
 
 .nav-toggle { display: none; background: none; border: 0; cursor: pointer; flex-direction: column; gap: 5px; padding: 6px; }
-.nav-toggle span { width: 24px; height: 2px; background: #222; }
+.nav-toggle span { width: 24px; height: 2px; background: #fff; }
 
 /* ---------- Buttons ---------- */
 .btn {
@@ -244,22 +253,44 @@ ul { list-style: none; }
 }
 .section-title-center { text-align: center; font-size: 1.6rem; margin-bottom: 24px; }
 
-/* ---------- Admin login override ---------- */
+/* ---------- Admin login override (black + #ffa31a theme) ---------- */
 .login-page {
   min-height: 80vh;
   display: flex; align-items: center; justify-content: center; padding: 60px 20px;
   background: var(--light);
 }
 .login-card {
-  background: #fff; border-radius: var(--radius); box-shadow: var(--shadow);
+  background: #000; border: 2px solid var(--accent); border-radius: var(--radius);
   padding: 40px; width: 100%; max-width: 420px;
 }
 .login-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
-.login-brand .brand-text { font-size: 20px; }
-.login-card h1 { font-size: 1.6rem; font-weight: 800; }
-.login-sub { color: var(--gray); margin-bottom: 22px; }
-.login-hint { font-size: 13px; color: var(--gray); margin-top: 18px; text-align: center; }
-.login-back { display: block; text-align: center; margin-top: 14px; color: var(--accent-dark); font-size: 14px; }
+.login-brand .brand-text { font-size: 20px; color: #fff; }
+.login-card h1 { font-size: 1.6rem; font-weight: 800; color: var(--accent); }
+.login-sub { color: #c9c9c9; margin-bottom: 22px; }
+.login-card .form-group label,
+.login-card .form-check label { color: #e6e6e6; }
+.login-card .form-group input[type="text"],
+.login-card .form-group input[type="password"] {
+  background: #141414; color: #fff; border: 1px solid #3a3a3a; padding: 11px 13px;
+  border-radius: var(--radius-sm); width: 100%; font-size: 15px; font-family: inherit;
+}
+.login-card .form-group input[type="text"]:focus,
+.login-card .form-group input[type="password"]:focus {
+  outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(255,163,26,0.25);
+}
+.login-card .form-check label {
+  display: flex; align-items: center; justify-content: flex-end; gap: 8px; cursor: pointer;
+}
+.login-card .form-check input[type="checkbox"] {
+  width: 17px; height: 17px; margin: 0; padding: 0; flex-shrink: 0;
+  border: none; background: transparent; accent-color: var(--accent);
+}
+.login-card .btn-primary { background: var(--accent); color: #000; }
+.login-card .btn-primary:hover { background: var(--accent-dark); transform: translateY(-1px); }
+.login-card .alert { border: 1px solid rgba(214,69,69,0.45); background: rgba(214,69,69,0.12); color: #ff9d9d; }
+.login-hint { font-size: 13px; color: #9a9a9a; margin-top: 18px; text-align: center; }
+.login-hint strong { color: var(--accent); }
+.login-back { display: block; text-align: center; margin-top: 14px; color: var(--accent); font-size: 14px; }
 
 /* ---------- Footer ---------- */
 .site-footer { background: var(--dark); color: #d5d5d5; margin-top: 20px; }
@@ -288,12 +319,12 @@ ul { list-style: none; }
 @media (max-width: 640px) {
   .nav-toggle { display: flex; }
   .main-nav {
-    position: absolute; top: 72px; left: 0; right: 0; background: #fff;
+    position: absolute; top: 72px; left: 0; right: 0; background: #000;
     flex-direction: column; align-items: stretch; padding: 16px 20px; gap: 4px;
-    border-bottom: 1px solid var(--border); display: none;
+    border-bottom: 1px solid #1a1a1a; display: none;
   }
   .main-nav.open { display: flex; }
-  .main-nav a { padding: 12px 4px; font-size: 16px; border-bottom: 1px solid var(--light); }
+  .main-nav a { padding: 12px 4px; font-size: 16px; border-bottom: 1px solid #2a2a2a; }
   .main-nav a:last-child { border-bottom: 0; }
   .form-row { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }

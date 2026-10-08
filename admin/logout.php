@@ -1,6 +1,6 @@
 <?php
 /**
- * CarBuy - Admin Logout
+ * KotseTayo - Admin Logout
  * Destroys the admin session and redirects to the login page.
  */
 require_once __DIR__ . '/../config/database.php';

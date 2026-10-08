@@ -1,6 +1,6 @@
 <?php
 /**
- * CarBuy - Customer / Buyer Management
+ * KotseTayo - Customer / Buyer Management
  */
 require_once __DIR__ . '/../includes/admin-header.php';
 

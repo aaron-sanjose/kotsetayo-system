@@ -1,6 +1,6 @@
 <?php
 /**
- * CarBuy - Admin Dashboard
+ * KotseTayo - Admin Dashboard
  */
 require_once __DIR__ . '/../includes/admin-header.php';
 

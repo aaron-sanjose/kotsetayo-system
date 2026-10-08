@@ -1,10 +1,10 @@
 /* ============================================================
-   CarBuy - Admin Stylesheet (sidebar dashboard layout)
+   KotseTayo - Admin Stylesheet (sidebar dashboard layout)
    ============================================================ */
 :root {
   --primary: #1a1a1a;
-  --accent: #d4af37;
-  --accent-dark: #b8962e;
+  --accent: #ffa31a;
+  --accent-dark: #da8b16;
   --dark: #111111;
   --light: #f5f6f8;
   --gray: #6b6b6b;
@@ -47,6 +47,14 @@ ul { list-style: none; }
 .admin-sidebar-brand .brand-mark {
   width: 38px; height: 38px; border-radius: 10px; background: #fff; color: var(--dark);
   display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 17px;
+}
+/* Brand logo image (replaces the old "KT" text mark) */
+.admin-sidebar-brand img.brand-mark {
+  height: 38px;
+  width: auto; /* KotseTayo.png is a wide 2172x724 banner; keep its aspect ratio */
+  object-fit: contain;
+  background: transparent;
+  border-radius: 0;
 }
 .admin-sidebar-brand .brand-text { font-size: 17px; font-weight: 800; }
 .admin-sidebar-brand .brand-text span { color: var(--accent); }

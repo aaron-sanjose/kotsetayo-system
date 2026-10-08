@@ -41,7 +41,7 @@ include __DIR__ . '/includes/header.php';
         <div class="contact-info">
             <div class="contact-block"><h3>Visit Us</h3><p>1234 Auto Plaza, Business District, City</p></div>
             <div class="contact-block"><h3>Call Us</h3><p>(02) 1234 5678<br>+63 912 345 6789</p></div>
-            <div class="contact-block"><h3>Email Us</h3><p>sales@carbuy.example.com</p></div>
+            <div class="contact-block"><h3>Email Us</h3><p>sales@kotsetayo.example.com</p></div>
             <div class="contact-block"><h3>Business Hours</h3><p>Mon - Sat: 9:00 AM - 6:00 PM<br>Sunday: Closed</p></div>
         </div>
 

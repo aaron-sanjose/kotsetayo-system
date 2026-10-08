@@ -1,10 +1,10 @@
 <?php
 /**
- * CarBuy - Shared Helper Functions
+ * KotseTayo - Shared Helper Functions
  * Include after config/database.php
  */
 
-if (!defined('CARBUY_BASE_INCLUDED')) {
+if (!defined('KOTSETAYO_BASE_INCLUDED')) {
 
 // Format a number as a currency (Philippine Peso by default).
 function format_money($amount, $currency = '₱') {
@@ -99,7 +99,7 @@ function get_flashes(): array {
     return $flashes;
 }
 
-define('CARBUY_BASE_INCLUDED', true);
+define('KOTSETAYO_BASE_INCLUDED', true);
 }
 // ----- Image upload helpers ----------------------------------------------
 const UPLOAD_MAX_BYTES = 5242880; // 5 MB

@@ -31,7 +31,7 @@ A complete web application for a car dealership that lets customers browse, sear
 | Layer     | Technology                                                  |
 | --------- | ----------------------------------------------------------- |
 | Language  | PHP (procedural, no framework)                              |
-| Database  | MySQL 5.7+   |
+| Database  | MySQL 5.7+ / MariaDB 10.x via PDO (prepared statements)     |
 | Frontend  | Semantic HTML5, custom CSS (style.css / admin.css), vanilla JS (script.js) |
 | Graphics  | Inline SVG illustrations (no image CDN)                     |
 | Server    | XAMPP / Apache (tested on XAMPP)                            |
@@ -67,6 +67,48 @@ A complete web application for a car dealership that lets customers browse, sear
 | admin    | admin123   |
 
 > Important: Change this password after your first login (via the admin Profile page).
+
+## Folder Structure
+
+```
+kotsetayo/
+├── admin/                  # Admin panel pages
+│   ├── login.php           #   Admin login (with remember me)
+│   ├── dashboard.php       #   Statistics / overview
+│   ├── cars.php            #   Vehicle list (admin)
+│   ├── add-car.php         #   Add vehicle + upload images
+│   ├── edit-car.php        #   Edit vehicle / images
+│   ├── inquiries.php       #   Inquiry management
+│   ├── customers.php       #   Buyer records
+│   ├── sales.php           #   Sales management
+│   ├── reports.php         #   Sales reports
+│   ├── profile.php         #   Change admin password
+│   └── logout.php          #   Logout
+├── assets/                 # Static assets
+│   ├── css/                #   style.css (public), admin.css (admin)
+│   ├── js/                 #   script.js
+│   └── images/             #   SVG illustrations (cars, hero, placeholder)
+├── config/
+│   └── database.php        # PDO connection, query helpers, base_url()
+├── database/
+│   └── kotsetayo.sql          # Database schema + sample data
+├── includes/
+│   ├── header.php          #   Public header/navbar
+│   ├── footer.php          #   Public footer
+│   ├── admin-header.php    #   Admin layout + auth guard
+│   ├── admin-sidebar.php   #   Admin navigation
+│   ├── functions.php       #   Helpers (formatting, CSRF, uploads, flash)
+│   └── auth.php            #   Auth middleware & remember-me logic
+├── uploads/
+│   └── cars/               #   Uploaded car images
+├── index.php               # Home
+├── cars.php                # Browse / search / filter
+├── car-details.php         # Single car details
+├── inquiry.php             # Send inquiry about a car
+├── purchase-request.php    # Purchase/buyer request
+├── about.php               # About page
+└── contact.php             # Contact form
+```
 
 > Note: User-uploaded images go to uploads/cars/ (web path stored in the car_images table). Asset/image paths are built with project_uri() so they work from any folder depth (root, admin, etc.).
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * CarBuy - Admin Account (change password / username)
+ * KotseTayo - Admin Account (change password / username)
  */
 require_once __DIR__ . '/../includes/admin-header.php';
 

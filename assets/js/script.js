@@ -1,5 +1,5 @@
 /* ============================================================
-   CarBuy - Vanilla JavaScript
+   KotseTayo - Vanilla JavaScript
    Mobile nav, filters, validation, image preview, modals, etc.
    ============================================================ */
 (function () {

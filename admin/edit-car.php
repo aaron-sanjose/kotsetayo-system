@@ -1,6 +1,6 @@
 <?php
 /**
- * CarBuy - Edit Vehicle
+ * KotseTayo - Edit Vehicle
  */
 require_once __DIR__ . '/../includes/admin-header.php';
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * CarBuy - Central Database Connection
+ * KotseTayo - Central Database Connection
  *
  * Uses PDO with prepared statements.
  * NOTE: For XAMPP default configuration user is 'root' with an empty password.
@@ -13,7 +13,7 @@ ini_set('display_errors', '0');
 ini_set('log_errors', '1');
 
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'carbuy');
+define('DB_NAME', 'kotsetayo');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 
@@ -29,13 +29,13 @@ function base_url() {
 }
 
 /**
- * Absolute URI for the project root (e.g. "/carbuy").
+ * Absolute URI for the project root (e.g. "/kotsetayo").
  * Used so asset/image paths work from any folder depth (root, admin, etc.).
  */
 function project_uri(): string {
     static $uri = null;
     if ($uri === null) {
-        $projectDir = str_replace('\\', '/', realpath(dirname(__DIR__))); // carbuy root
+        $projectDir = str_replace('\\', '/', realpath(dirname(__DIR__))); // project root
         $docRoot    = rtrim(str_replace('\\', '/', (string)($_SERVER['DOCUMENT_ROOT'] ?? '')), '/');
         if ($docRoot !== '' && strpos($projectDir, $docRoot) === 0) {
             $uri = '/' . ltrim(substr($projectDir, strlen($docRoot)), '/');

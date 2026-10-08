@@ -1,6 +1,6 @@
 <?php
 /**
- * CarBuy - Admin Sidebar navigation.
+ * KotseTayo - Admin Sidebar navigation.
  * Expects $admin_page (basename of current script) to be set by admin-header.
  */
 function adm_active(string $page): string {
@@ -10,8 +10,8 @@ function adm_active(string $page): string {
 ?>
 <aside class="admin-sidebar" id="adminSidebar">
     <div class="admin-sidebar-brand">
-        <span class="brand-mark">CB</span>
-        <span class="brand-text">Car<span>Buy</span> Admin</span>
+        <img src="<?php echo asset_uri('assets/images/KotseTayo.png'); ?>" alt="KotseTayo logo" class="brand-mark">
+        <span class="brand-text">Admin</span>
     </div>
     <nav class="admin-nav">
         <a href="dashboard.php"<?php echo adm_active('dashboard.php'); ?>>Dashboard</a>

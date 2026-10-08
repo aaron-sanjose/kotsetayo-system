@@ -66,11 +66,11 @@ include __DIR__ . '/includes/header.php';
     </div>
 </section>
 
-<!-- Why Choose CarBuy -->
+<!-- Why Choose KotseTayo -->
 <section class="section section-alt">
     <div class="container">
         <div class="section-head">
-            <h2>Why Choose CarBuy</h2>
+            <h2>Why Choose KotseTayo</h2>
             <p>We make buying your next car simple and stress-free.</p>
         </div>
         <div class="feature-grid">
@@ -102,7 +102,7 @@ include __DIR__ . '/includes/header.php';
 <section class="cta-section">
     <div class="container">
         <h2>Ready to find your next car?</h2>
-        <p>Join hundreds of satisfied customers who found their perfect vehicle with CarBuy.</p>
+        <p>Join hundreds of satisfied customers who found their perfect vehicle with KotseTayo.</p>
         <a href="cars.php" class="btn btn-primary btn-lg">Browse Available Cars</a>
     </div>
 </section>

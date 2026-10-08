@@ -4,6 +4,6 @@
   <path d="M170 290 q45 -75 130 -75 h240 q85 0 130 75 l28 64 q0 26 -28 26 h-500 q-28 0 -28 -26 z" fill="#3a3d40"/>
   <circle cx="250" cy="360" r="34" fill="#111" stroke="#fff" stroke-width="9"/>
   <circle cx="550" cy="360" r="34" fill="#111" stroke="#fff" stroke-width="9"/>
-  <rect x="325" y="230" width="80" height="58" rx="12" fill="#d4af37"/>
+  <rect x="325" y="230" width="80" height="58" rx="12" fill="#ffa31a"/>
   <text x="400" y="450" font-family="Inter,Arial,sans-serif" font-size="28" font-weight="bold" fill="#555" text-anchor="middle">Quality Cars, Trusted Service</text>
 </svg>

@@ -6,7 +6,7 @@ include __DIR__ . '/includes/header.php';
 
 <section class="page-banner">
     <div class="container">
-        <h1>About CarBuy</h1>
+        <h1>About KotseTayo</h1>
         <p>Your trusted partner in finding the perfect vehicle.</p>
     </div>
 </section>
@@ -15,11 +15,11 @@ include __DIR__ . '/includes/header.php';
     <div class="container about-grid">
         <div class="about-text">
             <h2>Who We Are</h2>
-            <p>CarBuy is a trusted car dealership focused on making vehicle buying simple, transparent, and convenient. We offer a carefully selected range of quality used and brand-new vehicles that meet the needs and budgets of modern drivers.</p>
+            <p>KotseTayo is a trusted car dealership focused on making vehicle buying simple, transparent, and convenient. We offer a carefully selected range of quality used and brand-new vehicles that meet the needs and budgets of modern drivers.</p>
             <p>From your very first search to driving off the lot, our experienced team is here to guide you with honest advice and reliable service.</p>
         </div>
         <div class="about-media">
-            <img src="assets/images/about-car.svg" alt="About CarBuy">
+            <img src="assets/images/about-car.svg" alt="About KotseTayo">
         </div>
     </div>
 </section>

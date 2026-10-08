@@ -1,6 +1,6 @@
 <?php
 /**
- * CarBuy - Admin Login
+ * KotseTayo - Admin Login
  */
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../includes/functions.php';
@@ -55,11 +55,11 @@ require_once __DIR__ . '/../includes/header.php';
 <section class="login-page">
     <div class="login-card">
         <div class="login-brand">
-            <span class="brand-mark">CB</span>
-            <span class="brand-text">Car<span>Buy</span> Admin</span>
+            <img src="<?php echo asset_uri('assets/images/KotseTayo.png'); ?>" alt="KotseTayo logo" class="brand-mark">
+            <span class="brand-text">Admin</span>
         </div>
         <h1>Admin Login</h1>
-        <p class="login-sub">Please sign in to manage CarBuy.</p>
+        <p class="login-sub">Please sign in to manage KotseTayo.</p>
 
         <?php if ($error): ?>
             <div class="alert alert-error"><?php echo e($error); ?></div>
@@ -81,7 +81,7 @@ require_once __DIR__ . '/../includes/header.php';
         </form>
 
         <p class="login-hint">Default credentials: <strong>admin</strong> / <strong>admin123</strong> (please change after first login).</p>
-        <p><a href="../index.php" class="login-back">&larr; Back to Website</a></p>
+        <p><a href="<?php echo asset_uri('index.php'); ?>" class="login-back">&larr; Back to Website</a></p>
     </div>
 </section>
 
