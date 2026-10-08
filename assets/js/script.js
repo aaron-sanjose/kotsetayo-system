@@ -111,6 +111,14 @@
     if (inquiryModal) inquiryModal.classList.remove('show');
   });
 
+  /* ---------- Status pill: recolor instantly when status changes ---------- */
+  document.querySelectorAll('select.status-select').forEach(function (sel) {
+    sel.addEventListener('change', function () {
+      sel.classList.remove('status-pending', 'status-contacted', 'status-completed', 'status-cancelled');
+      sel.classList.add('status-' + (sel.value || '').toLowerCase());
+    });
+  });
+
   /* ---------- Auto-fill selling price when vehicle selected ---------- */
   const carSelect = document.getElementById('car_id');
   const priceInput = document.getElementById('selling_price');

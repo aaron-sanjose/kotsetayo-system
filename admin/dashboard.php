@@ -35,21 +35,23 @@ $recent_sales = fetch_all(
      LEFT JOIN customers cu ON cu.id = s.customer_id
      ORDER BY s.sale_date DESC LIMIT 5"
 );
+
+$revenue_display = '₱' . number_format($stats['revenue'] / 1000000, 3) . 'M';
 ?>
 
-<div class="stat-grid">
-    <div class="stat-card"><div class="stat-label">Total Vehicles</div><div class="stat-value"><?php echo $stats['total_vehicles']; ?></div></div>
-    <div class="stat-card stat-avail"><div class="stat-label">Available</div><div class="stat-value"><?php echo $stats['available']; ?></div></div>
-    <div class="stat-card stat-resv"><div class="stat-label">Reserved</div><div class="stat-value"><?php echo $stats['reserved']; ?></div></div>
-    <div class="stat-card stat-sold"><div class="stat-label">Sold</div><div class="stat-value"><?php echo $stats['sold']; ?></div></div>
+<div class="stat-grid dashboard-stat-grid">
+    <div class="stat-card dashboard-stat stat-total"><div><div class="stat-label">Total Vehicles</div><div class="stat-value"><?php echo $stats['total_vehicles']; ?></div></div></div>
+    <div class="stat-card dashboard-stat stat-avail"><div><div class="stat-label">Available</div><div class="stat-value"><?php echo $stats['available']; ?></div></div></div>
+    <div class="stat-card dashboard-stat stat-resv"><div><div class="stat-label">Reserved</div><div class="stat-value"><?php echo $stats['reserved']; ?></div></div></div>
+    <div class="stat-card dashboard-stat stat-sold"><div><div class="stat-label">Sold</div><div class="stat-value"><?php echo $stats['sold']; ?></div></div></div>
 
-    <div class="stat-card"><div class="stat-label">Total Sales</div><div class="stat-value"><?php echo $stats['total_sales']; ?></div></div>
-    <div class="stat-card"><div class="stat-label">Sales This Month</div><div class="stat-value"><?php echo $stats['sales_this_month']; ?></div></div>
-    <div class="stat-card stat-rev"><div class="stat-label">Total Revenue</div><div class="stat-value"><?php echo format_money($stats['revenue']); ?></div></div>
+    <div class="stat-card dashboard-stat stat-sales"><div><div class="stat-label">Total Sales</div><div class="stat-value"><?php echo $stats['total_sales']; ?></div></div></div>
+    <div class="stat-card dashboard-stat stat-sales"><div><div class="stat-label">Sales This Month</div><div class="stat-value"><?php echo $stats['sales_this_month']; ?></div></div></div>
+    <div class="stat-card dashboard-stat stat-rev"><div><div class="stat-label">Total Revenue</div><div class="stat-value"><?php echo $revenue_display; ?></div></div></div>
 
-    <div class="stat-card stat-pend"><div class="stat-label">Pending Inquiries</div><div class="stat-value"><?php echo $stats['inquiries_pending']; ?></div></div>
-    <div class="stat-card stat-cont"><div class="stat-label">Contacted</div><div class="stat-value"><?php echo $stats['inquiries_contacted']; ?></div></div>
-    <div class="stat-card stat-compl"><div class="stat-label">Completed</div><div class="stat-value"><?php echo $stats['inquiries_completed']; ?></div></div>
+    <div class="stat-card dashboard-stat stat-pend"><div><div class="stat-label">Pending Inquiries</div><div class="stat-value"><?php echo $stats['inquiries_pending']; ?></div></div></div>
+    <div class="stat-card dashboard-stat stat-cont"><div><div class="stat-label">Contacted</div><div class="stat-value"><?php echo $stats['inquiries_contacted']; ?></div></div></div>
+    <div class="stat-card dashboard-stat stat-compl"><div><div class="stat-label">Completed</div><div class="stat-value"><?php echo $stats['inquiries_completed']; ?></div></div></div>
 </div>
 
 <div class="admin-cols">

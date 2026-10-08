@@ -16,17 +16,18 @@ include __DIR__ . '/includes/header.php';
 
 <!-- Hero -->
 <section class="hero">
-    <div class="container hero-grid">
+    <div class="container hero-inner">
         <div class="hero-content">
-            <h1>Find Your Next Car</h1>
-            <p>Browse quality vehicles and find the right car for your budget and lifestyle.</p>
-            <div class="hero-actions">
-                <a href="cars.php" class="btn btn-primary btn-lg">Browse Cars</a>
-                <a href="contact.php" class="btn btn-outline-light btn-lg">Sell Your Car / Contact Us</a>
-            </div>
-        </div>
-        <div class="hero-media">
-            <img src="assets/images/hero-car.svg" alt="Featured car" class="hero-img">
+            <h1>Find Your Perfect Car</h1>
+            <p>Browse quality pre-owned vehicles at the best prices in the market. Guaranteed fully inspected, transparent history, and ready for transfer.</p>
+            <form class="hero-search" action="cars.php" method="get" role="search">
+                <label class="sr-only" for="hero-search-query">Search vehicles</label>
+                <span class="hero-search-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" focusable="false"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg>
+                </span>
+                <input class="hero-search-input" id="hero-search-query" name="q" type="search" placeholder="Enter keyword, brand, model..." autocomplete="off">
+                <button class="hero-search-submit" type="submit">Search</button>
+            </form>
         </div>
     </div>
 </section>
@@ -34,9 +35,9 @@ include __DIR__ . '/includes/header.php';
 <!-- Featured Cars -->
 <section class="section">
     <div class="container">
-        <div class="section-head">
-            <h2>Featured Cars</h2>
-            <p>Hand-picked vehicles ready for your next adventure.</p>
+        <div class="section-head section-head-left">
+            <h2>Featured Vehicles</h2>
+            <p>Handpicked quality cars newly arrived on our lot.</p>
         </div>
 
         <?php if (empty($featured)): ?>
@@ -103,7 +104,7 @@ include __DIR__ . '/includes/header.php';
     <div class="container">
         <h2>Ready to find your next car?</h2>
         <p>Join hundreds of satisfied customers who found their perfect vehicle with KotseTayo.</p>
-        <a href="cars.php" class="btn btn-primary btn-lg">Browse Available Cars</a>
+         <a href="cars.php" class="btn btn-accent btn-lg">Browse Available Cars</a>
     </div>
 </section>
 

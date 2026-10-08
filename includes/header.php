@@ -24,7 +24,7 @@ function nav_active(string $page): string {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KotseTayo - Car Buy &amp; Sell Management System</title>
     <meta name="description" content="KotseTayo is a trusted car dealership for buying and selling quality new and used vehicles.">
-    <link rel="stylesheet" href="<?php echo asset_uri('assets/css/style.css'); ?>">
+    <link rel="stylesheet" href="<?php echo asset_uri('assets/css/style.css'); ?>?v=<?php echo filemtime(__DIR__ . '/../assets/css/style.css'); ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">

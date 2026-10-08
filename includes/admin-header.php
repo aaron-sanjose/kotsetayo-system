@@ -29,7 +29,7 @@ $admin_title = $admin_titles[$admin_page] ?? 'Admin';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo e($admin_title); ?> | KotseTayo Admin</title>
-    <link rel="stylesheet" href="<?php echo asset_uri('assets/css/admin.css'); ?>">
+    <link rel="stylesheet" href="<?php echo asset_uri('assets/css/admin.css'); ?>?v=<?php echo filemtime(__DIR__ . '/../assets/css/admin.css'); ?>">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body class="admin-body">

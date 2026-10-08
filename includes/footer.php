@@ -11,7 +11,7 @@
             <a href="<?php echo asset_uri('index.php'); ?>" class="brand brand-footer">
                 <img src="<?php echo asset_uri('assets/images/KotseTayo.png'); ?>" alt="KotseTayo logo" class="brand-mark">
             </a>
-            <p>KotseTayo is a trusted car dealership focused on making vehicle buying simple, transparent, and convenient.</p>
+            <p>Your most trusted online marketplace for high-quality pre-owned vehicles in the Philippines. Transparent deals, verified sellers, and smooth transitions.</p>
             <div class="socials">
                 <a href="#" aria-label="Facebook">F</a>
                 <a href="#" aria-label="Instagram">I</a>
@@ -31,8 +31,8 @@
         <div class="footer-col">
             <h4>Contact</h4>
             <ul class="footer-contact">
-                <li>1234 Auto Plaza, Business District, City</li>
-                <li>(02) 1234 5678 / +63 912 345 6789</li>
+                <li>P Burgos St, Concepcion, Baras, Rizal</li>
+                <li>+63 (2) 8911-2233 / +63 (917) 555-4321</li>
                 <li>sales@kotsetayo.example.com</li>
                 <li>Mon - Sat: 9:00 AM - 6:00 PM</li>
             </ul>

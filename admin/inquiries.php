@@ -79,7 +79,7 @@ $statuses = ['Pending', 'Contacted', 'Completed', 'Cancelled'];
                         <form method="post" action="inquiries.php" class="inline-form">
                             <input type="hidden" name="csrf_token" value="<?php echo e($token); ?>">
                             <input type="hidden" name="id" value="<?php echo (int)$inq['id']; ?>">
-                            <select name="status" onchange="this.form.submit()" class="status-select">
+                            <select name="status" onchange="this.form.submit()" class="status-select status-<?php echo e(strtolower($inq['status'])); ?>" aria-label="Change status for inquiry <?php echo (int)$inq['id']; ?>">
                                 <?php foreach ($statuses as $st): ?>
                                 <option value="<?php echo e($st); ?>" <?php echo $inq['status'] === $st ? 'selected' : ''; ?>><?php echo e($st); ?></option>
                                 <?php endforeach; ?>

@@ -12,5 +12,4 @@
   <circle cx="250" cy="380" r="38" fill="#0d0d0d" stroke="#fff" stroke-width="10"/>
   <circle cx="560" cy="380" r="38" fill="#0d0d0d" stroke="#fff" stroke-width="10"/>
   <rect x="350" y="225" width="90" height="65" rx="14" fill="#ffa31a"/>
-  <text x="400" y="470" font-family="Inter,Arial,sans-serif" font-size="40" font-weight="800" fill="#fff" text-anchor="middle">Find Your Next Car</text>
 </svg>

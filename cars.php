@@ -70,7 +70,7 @@ $brands = fetch_all("SELECT DISTINCT brand FROM cars WHERE status = 'Available' 
 include __DIR__ . '/includes/header.php';
 ?>
 
-<section class="page-banner">
+<section class="page-banner page-banner-image">
     <div class="container">
         <h1>Browse Our Cars</h1>
         <p>Search, filter, and find the vehicle that's right for you.</p>

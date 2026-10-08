@@ -4,7 +4,7 @@ require_once __DIR__ . '/includes/functions.php';
 include __DIR__ . '/includes/header.php';
 ?>
 
-<section class="page-banner">
+<section class="page-banner page-banner-image">
     <div class="container">
         <h1>About KotseTayo</h1>
         <p>Your trusted partner in finding the perfect vehicle.</p>
