@@ -87,7 +87,7 @@ include __DIR__ . '/includes/header.php';
         <div class="section-head"><h2>Meet Our Team</h2><p>The people behind KotseTayo, ready to serve you.</p></div>
         <div class="team-grid">
             <div class="team-card">
-                <div class="team-avatar">AS</div>
+                <img class="team-avatar" src="assets/images/aaronsanjose.jpg" alt="Aaron San Jose">
                 <div class="team-body">
                     <h3>Aaron San Jose</h3>
                     <span class="team-role">Owner</span>
@@ -95,7 +95,7 @@ include __DIR__ . '/includes/header.php';
                 </div>
             </div>
             <div class="team-card">
-                <div class="team-avatar">vs</div>
+                <img class="team-avatar" src="assets/images/vansarcauga.jpg" alt="Van Sarcauga">
                 <div class="team-body">
                     <h3>Van Sarcauga</h3>
                     <span class="team-role">Quality Inspector</span>
@@ -103,7 +103,7 @@ include __DIR__ . '/includes/header.php';
                 </div>
             </div>
             <div class="team-card">
-                <div class="team-avatar">JC</div>
+                <img class="team-avatar" src="assets/images/jeancarpina.jpg" alt="Jean Emmanuel Carpina">
                 <div class="team-body">
                     <h3>Jean Emmanuel Carpina</h3>
                     <span class="team-role">Sales Manager</span>
@@ -111,7 +111,7 @@ include __DIR__ . '/includes/header.php';
                 </div>
             </div>
             <div class="team-card">
-                <div class="team-avatar">CB</div>
+                <img class="team-avatar" src="assets/images/christopbatu.jpg" alt="Christopher Batu">
                 <div class="team-body">
                     <h3>Christopher Batu</h3>
                     <span class="team-role">Customer Relations Officer</span>
