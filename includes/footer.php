@@ -13,10 +13,7 @@
             </a>
             <p>Your most trusted online marketplace for high-quality pre-owned vehicles in the Philippines. Transparent deals, verified sellers, and smooth transitions.</p>
             <div class="socials">
-                <a href="#" aria-label="Facebook">F</a>
-                <a href="#" aria-label="Instagram">I</a>
-                <a href="#" aria-label="Twitter">T</a>
-                <a href="#" aria-label="YouTube">Y</a>
+
             </div>
         </div>
         <div class="footer-col">

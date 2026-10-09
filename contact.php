@@ -83,7 +83,7 @@ include __DIR__ . '/includes/header.php';
 <section class="section">
     <div class="container">
         <h2 class="section-title-center">Find Us Here</h2>
-        <div class="map-placeholder">
+        <div class="map-placeholder map-dark">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1931.1819224157562!2d121.26478036758665!3d14.521168739056268!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397ea79246bf14f%3A0x9d0c7a543cf6a878!2sP%20Burgos%20St%2C%20Concepcion%2C%20Baras%2C%20Rizal!5e0!3m2!1sen!2sph!4v1789011553984!5m2!1sen!2sph" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </div>
     </div>

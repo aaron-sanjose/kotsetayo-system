@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 include __DIR__ . '/includes/header.php';
 ?>
 
-<section class="page-banner">
+<section class="page-banner page-banner-image">
     <div class="container">
         <h1>Send an Inquiry</h1>
         <p>Tell us which vehicle you're interested in and our team will get back to you.</p>

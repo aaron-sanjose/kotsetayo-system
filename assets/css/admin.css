@@ -17,6 +17,9 @@
   --amber: #c99700;
   --blue: #2c6fbb;
   --sidebar-w: 240px;
+  /* Dropdown icons (see .inline-filter select / .form-group select / .status-select) */
+  --select-arrow: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' fill='none' stroke='%236b6b6b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --select-arrow-pill: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23666666'/%3E%3C/svg%3E");
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -185,15 +188,15 @@ ul { list-style: none; }
 /* Status pill select (color-coded dropdown, used on the inquiries page) */
 .status-select {
   appearance: none; -webkit-appearance: none; -moz-appearance: none;
-  padding: 5px 26px 5px 12px;
+  padding: 5px 32px 5px 12px;
   border: 1px solid transparent;
   border-radius: 999px;
   font-size: 12px; font-weight: 700; font-family: inherit;
   cursor: pointer; white-space: nowrap;
   background-color: #f1f1f1; color: #444;
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23666666'/%3E%3C/svg%3E");
+  background-image: var(--select-arrow-pill);
   background-repeat: no-repeat;
-  background-position: right 10px center;
+  background-position: right 14px center;
   background-size: 9px;
   transition: box-shadow .15s, filter .15s;
 }
@@ -213,6 +216,15 @@ ul { list-style: none; }
 .status-contacted { background: var(--blue); }
 .status-completed { background: var(--green); }
 .status-cancelled { background: var(--gray); }
+/* The .status-* badge colors above also match the status dropdown pill, whose
+   `background` shorthand would reset the icon (making it tile). Restore it. */
+.status-select.status-pending, .status-select.status-contacted,
+.status-select.status-completed, .status-select.status-cancelled {
+  background-image: var(--select-arrow-pill);
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 9px;
+}chrome
 
 /* ---------- Forms ---------- */
 .admin-form { display: block; }
@@ -223,6 +235,16 @@ ul { list-style: none; }
   font-size: 14px; font-family: inherit; background: #fff;
 }
 .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
+/* Custom dropdown icon with space on the right (see .inline-filter select) */
+.form-group select {
+  appearance: none; -webkit-appearance: none; -moz-appearance: none;
+  padding-right: 38px;
+  background-image: var(--select-arrow);
+  background-repeat: no-repeat;
+  background-position: right 13px center;
+  background-size: 12px 8px;
+  cursor: pointer;
+}
 .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
 .form-actions { display: flex; gap: 12px; margin-top: 20px; align-items: center; }
 .form-note { font-size: 13px; color: var(--gray); margin-top: 12px; }
@@ -272,7 +294,18 @@ ul { list-style: none; }
 
 /* ---------- Inline filter ---------- */
 .inline-filter { display: flex; align-items: center; gap: 10px; }
-.inline-filter select { padding: 7px 10px; border: 1px solid var(--border); border-radius: 6px; font-family: inherit; font-size: 14px; }
+/* Custom dropdown icon: hides the native arrow so the icon keeps its
+   distance from the right edge of the field. */
+.inline-filter select {
+  appearance: none; -webkit-appearance: none; -moz-appearance: none;
+  padding: 7px 32px 7px 12px; border: 1px solid var(--border); border-radius: 6px;
+  font-family: inherit; font-size: 14px;
+  background-image: var(--select-arrow);
+  background-repeat: no-repeat;
+  background-position: right 11px center;
+  background-size: 11px 7px;
+  cursor: pointer;
+}
 .filter-panel-admin { background: #f8f8f8; margin-bottom: 18px; }
 
 /* ---------- Sales report filters ---------- */
@@ -295,6 +328,16 @@ ul { list-style: none; }
 .rf-field input:focus, .rf-field select:focus {
   outline: none; border-color: var(--accent); background: #fff;
   box-shadow: 0 0 0 3px rgba(255, 163, 26, .15);
+}
+/* Custom dropdown icon with space on the right (see .inline-filter select) */
+.rf-field select {
+  appearance: none; -webkit-appearance: none; -moz-appearance: none;
+  padding-right: 38px;
+  background-image: var(--select-arrow);
+  background-repeat: no-repeat;
+  background-position: right 13px center;
+  background-size: 12px 8px;
+  cursor: pointer;
 }
 .rf-actions { display: flex; gap: 8px; }
 .rf-actions .btn { white-space: nowrap; }
@@ -319,6 +362,90 @@ ul { list-style: none; }
 }
 .report-table tfoot td {
   background: #fafafa; font-weight: 700; color: #222; border-top: 2px solid var(--border);
+}
+
+/* ---------- Black / orange screen theme ---------- */
+@media screen {
+  :root {
+    color-scheme: dark;
+    --primary: #ff9000;
+    --accent: #ff9000;
+    --accent-dark: #ffab40;
+    --dark: #000;
+    --light: #101010;
+    --gray: #aaa;
+    --border: #363636;
+    --surface: #1b1b1b;
+    --text: #f2f2f2;
+    --radius: 6px;
+    --radius-sm: 4px;
+    --shadow: 0 6px 24px rgba(0,0,0,.35);
+    /* Lighter dropdown icons for the dark theme */
+    --select-arrow: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' fill='none' stroke='%23cccccc' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    --select-arrow-pill: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23cccccc'/%3E%3C/svg%3E");
+  }
+  body.admin-body { background: var(--light); color: var(--text); }
+  ::selection { background: var(--accent); color: #000; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+  input, select, textarea { color: var(--text); background: #242424; accent-color: var(--accent); }
+  input::placeholder, textarea::placeholder { color: #aaa; opacity: 1; }
+  .admin-sidebar-footer .btn { color: #000; }
+  .admin-sidebar-footer .btn:hover { color: #000; }
+  .admin-topbar { background: #151515; border-bottom-color: var(--border); box-shadow: none; }
+  .admin-sidebar-toggle { color: var(--text); }
+  .btn-primary, .btn-accent { background: var(--accent); color: #000; font-weight: 700; }
+  .btn-primary:hover, .btn-accent:hover { background: var(--accent-dark); color: #000; }
+  .btn-outline { background: #222; border-color: #666; color: var(--text); }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); background: #222; }
+  .btn-danger { color: #fff; }
+  .stat-card, .panel, .modal-box, .report-filters { background: var(--surface); }
+  .admin-sidebar-brand .brand-mark { background: transparent; color: var(--accent); }
+  .stat-icon { background: rgba(255,255,255,.08); }
+  .stat-total, .stat-sales { --stat-color: var(--accent); }
+  .stat-total .stat-value, .stat-sales .stat-value { color: var(--accent); }
+  .table thead th { background: #1b1b1b; color: #bbb; border-bottom-color: var(--border); }
+  .table tbody tr:hover { background: #222; }
+  .form-group input, .form-group select, .form-group textarea { background: #242424; border-color: #666; color: var(--text); }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(255,144,0,.2); }
+  .rf-field input, .rf-field select { background: #242424; border-color: #666; color: var(--text); }
+  .rf-field input:hover, .rf-field select:hover { border-color: #777; }
+  .rf-field input:focus, .rf-field select:focus { background: #242424; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(255,144,0,.15); }
+  .rf-field label, .rf-meta strong, .rev-legend strong, .modal-box p { color: #ccc; }
+  .rf-chip { background: #222; color: #ccc; border-color: #444; }
+  .rf-chip:hover { border-color: var(--accent); color: var(--accent); background: #242424; }
+  .rf-chip-active, .rf-chip-active:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+  .rf-tag { background: #2a2a2a; color: #ccc; }
+  .report-table tfoot td { background: #242424; color: var(--text); }
+  .customer-detail-info { background: #151515; }
+  .filter-panel-admin { background: #151515; }
+  .inline-filter select, .rf-chip, .status-select { border-radius: 999px; }
+  /* Keep the custom dropdown icons on the dark fields: the `background`
+     shorthand above resets their position/repeat/size. */
+  .inline-filter select, .form-group select, .rf-field select {
+    background-image: var(--select-arrow);
+    background-repeat: no-repeat;
+    background-position: right 13px center;
+    background-size: 12px 8px;
+  }
+  .alert-success { background: #112b1d; color: #8ee6b2; border-color: #326648; }
+  .alert-error { background: #351919; color: #ffb0b0; border-color: #884444; }
+  .modal { background: rgba(0,0,0,.7); }
+  .status-select { color-scheme: dark; }
+  .status-select.status-pending { background-color: #332710; border-color: #8a6a00; color: #ffd47a; }
+  .status-select.status-contacted { background-color: #152b42; border-color: #386797; color: #9bceff; }
+  .status-select.status-completed { background-color: #112b1d; border-color: #326648; color: #8ee6b2; }
+  .status-select.status-cancelled { background-color: #3a3a3a; border-color: #666; color: #ddd; }
+  .status-select option { background: #242424; color: var(--text); }
+  .status-select:focus { box-shadow: 0 0 0 3px rgba(255,144,0,.25); }
+  .status-reserved, .status-pending, .btn-resv { color: #000; }
+  .status-cancelled { background: #555; }
+  .admin-nav-label { color: #aaa; }
+  .stat-avail, .stat-compl { --stat-color: #68d99a; }
+  .stat-cont { --stat-color: #83bbf5; }
+  .stat-sold { --stat-color: #ff9292; }
+  .stat-avail .stat-value, .stat-compl .stat-value { color: #68d99a; }
+  .stat-cont .stat-value { color: #83bbf5; }
+  .stat-sold .stat-value, .image-remove { color: #ff9292; }
 }
 
 /* ---------- Responsive ---------- */

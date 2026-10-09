@@ -185,10 +185,10 @@ foreach ($chart_months as $m) {
                     label: 'Revenue',
                     data: data,
                     backgroundColor: data.map(function (_, i) {
-                        return i === current ? '#ffa31a' : 'rgba(255, 163, 26, .45)';
+                        return i === current ? '#ff9000' : 'rgba(255, 144, 0, .55)';
                     }),
-                    hoverBackgroundColor: '#da8b16',
-                    borderRadius: 7,
+                    hoverBackgroundColor: '#ffab40',
+                    borderRadius: 4,
                     maxBarThickness: 42
                 }]
             },
@@ -210,14 +210,14 @@ foreach ($chart_months as $m) {
                 scales: {
                     y: {
                         beginAtZero: true,
-                        grid: { color: 'rgba(0,0,0,.06)' },
+                        grid: { color: 'rgba(255,255,255,.12)' },
                         border: { display: false },
-                        ticks: { color: '#8a8a8a', font: { size: 11 }, callback: function (v) { return compact(v); } }
+                        ticks: { color: '#aaa', font: { size: 11 }, callback: function (v) { return compact(v); } }
                     },
                     x: {
                         grid: { display: false },
                         border: { display: false },
-                        ticks: { color: '#6b6b6b', font: { size: 12, weight: '600' } }
+                        ticks: { color: '#aaa', font: { size: 12, weight: '600' } }
                     }
                 }
             }
