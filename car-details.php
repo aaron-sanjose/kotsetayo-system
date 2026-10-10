@@ -16,14 +16,14 @@ if (!$car) {
     exit;
 }
 
-$images = fetch_all("SELECT image_path FROM car_images WHERE car_id = ? ORDER BY id", [$id]);
+$images = fetch_all("SELECT image_path FROM car_images WHERE car_id = ? ORDER BY sort_order, id", [$id]);
 if (empty($images)) {
     $images = [['image_path' => 'assets/images/car-placeholder.svg']];
 }
 
 // Related vehicles: same brand or same fuel type, not sold, excluding current.
 $related = fetch_all(
-    "SELECT c.*, (SELECT ci.image_path FROM car_images ci WHERE ci.car_id = c.id ORDER BY ci.id LIMIT 1) AS image_path
+    "SELECT c.*, (SELECT ci.image_path FROM car_images ci WHERE ci.car_id = c.id ORDER BY ci.sort_order, ci.id LIMIT 1) AS image_path
      FROM cars c
      WHERE c.id != ? AND c.status != 'Sold'
      ORDER BY (c.brand = ?) DESC, c.created_at DESC

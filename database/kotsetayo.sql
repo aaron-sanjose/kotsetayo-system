@@ -57,9 +57,11 @@ CREATE TABLE IF NOT EXISTS `car_images` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `car_id` INT UNSIGNED NOT NULL,
   `image_path` VARCHAR(255) NOT NULL,
+  `sort_order` INT UNSIGNED NOT NULL DEFAULT 0,
   `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `idx_car_images_car` (`car_id`),
+  KEY `idx_car_images_order` (`car_id`, `sort_order`),
   CONSTRAINT `fk_car_images_car`
     FOREIGN KEY (`car_id`) REFERENCES `cars` (`id`)
     ON DELETE CASCADE ON UPDATE CASCADE

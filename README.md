@@ -60,6 +60,8 @@ A complete web application for a car dealership that lets customers browse, sear
 
 > Note: If your MySQL credentials differ from the XAMPP defaults, edit config/database.php (DB_HOST, DB_USER, DB_PASS).
 
+For an existing database, run `database/migrations/20261010_add_car_image_sort_order.sql` once in phpMyAdmin before using the image ordering controls.
+
 ### Default Admin Account
 
 | Username | Password   |

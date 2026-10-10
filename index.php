@@ -4,7 +4,7 @@ require_once __DIR__ . '/includes/functions.php';
 
 // Fetch 6 featured available vehicles with their first image.
 $featured = fetch_all(
-    "SELECT c.*, (SELECT ci.image_path FROM car_images ci WHERE ci.car_id = c.id ORDER BY ci.id LIMIT 1) AS image_path
+    "SELECT c.*, (SELECT ci.image_path FROM car_images ci WHERE ci.car_id = c.id ORDER BY ci.sort_order, ci.id LIMIT 1) AS image_path
      FROM cars c
      WHERE c.status = 'Available'
      ORDER BY c.created_at DESC

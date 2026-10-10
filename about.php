@@ -118,7 +118,14 @@ include __DIR__ . '/includes/header.php';
                     <p>Answers your questions fast and makes every visit feel welcome.</p>
                 </div>
             </div>
-            <div class="team-card"><div class="team-avatar">AM</div><div class="team-body"><h3>Aaron James Magdaraog</h3><span class="team-role">Marketing Specialist</span><p>Shares KotseTayo's best deals with drivers across Rizal.</p></div></div>
+            <div class="team-card">
+                <img class="team-avatar" src="assets/images/aaronmagdaraog.jpg" alt="Aaron James Magdaraog">
+                <div class="team-body">
+                    <h3>Aaron James Magdaraog</h3>
+                    <span class="team-role">Marketing Specialist</span>
+                    <p>Shares KotseTayo's best deals with drivers across Rizal.</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>

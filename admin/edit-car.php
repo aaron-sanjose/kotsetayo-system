@@ -13,7 +13,11 @@ if (!$car) {
     exit;
 }
 
-$car_images = fetch_all("SELECT * FROM car_images WHERE car_id = ? ORDER BY id", [$id]);
+$car_images = fetch_all("SELECT * FROM car_images WHERE car_id = ? ORDER BY sort_order, id", [$id]);
+$car_images_by_id = [];
+foreach ($car_images as $image) {
+    $car_images_by_id[(int)$image['id']] = $image;
+}
 
 $errors = [];
 $old = [
@@ -61,13 +65,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (strpos($res, 'ERR:') === 0) {
                     $errors[] = 'Image "' . e($_FILES['images']['name'][$i]) . '": ' . substr($res, 4);
                 } else {
-                    $uploaded[] = $res;
+                    $uploaded[$i] = $res;
                 }
             }
         }
 
         // Handle image deletions (a set of IDs marked for removal).
-        $delete_ids = isset($_POST['delete_image']) ? (array)$_POST['delete_image'] : [];
+        $delete_ids = [];
+        foreach ((array)($_POST['delete_image'] ?? []) as $imgId) {
+            if (ctype_digit((string)$imgId) && isset($car_images_by_id[(int)$imgId])) {
+                $delete_ids[(int)$imgId] = true;
+            }
+        }
 
         if (empty($errors)) {
             query(
@@ -79,17 +88,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                  $old['engine'], $old['description'], $old['status'], $id]
             );
 
-            // Insert new images.
-            foreach ($uploaded as $path) {
-                query("INSERT INTO car_images (car_id, image_path) VALUES (?, ?)", [$id, $path]);
+            // Delete selected images from DB and disk.
+            foreach (array_keys($delete_ids) as $imgId) {
+                query("DELETE FROM car_images WHERE id = ? AND car_id = ?", [$imgId, $id]);
+                delete_uploaded_file($car_images_by_id[$imgId]['image_path']);
             }
 
-            // Delete selected images from DB and disk.
-            foreach ($delete_ids as $imgId) {
-                $img = fetch_one("SELECT * FROM car_images WHERE id = ? AND car_id = ?", [(int)$imgId, $id]);
-                if ($img) {
-                    query("DELETE FROM car_images WHERE id = ?", [(int)$imgId]);
-                    delete_uploaded_file($img['image_path']);
+            // Keep the submitted order, ignoring unknown or duplicate image keys.
+            $ordered_images = [];
+            $seen_images = [];
+            foreach ((array)($_POST['image_order'] ?? []) as $imageKey) {
+                if (!is_string($imageKey)) continue;
+
+                if (strpos($imageKey, 'existing:') === 0) {
+                    $imgId = substr($imageKey, 9);
+                    if (!ctype_digit($imgId)) continue;
+                    $imgId = (int)$imgId;
+                    if (!isset($car_images_by_id[$imgId]) || isset($delete_ids[$imgId]) || isset($seen_images['existing:' . $imgId])) continue;
+                    $ordered_images[] = ['type' => 'existing', 'id' => $imgId];
+                    $seen_images['existing:' . $imgId] = true;
+                } elseif (strpos($imageKey, 'new:') === 0) {
+                    $uploadIndex = substr($imageKey, 4);
+                    if (!ctype_digit($uploadIndex)) continue;
+                    $uploadIndex = (int)$uploadIndex;
+                    if (!array_key_exists($uploadIndex, $uploaded) || isset($seen_images['new:' . $uploadIndex])) continue;
+                    $ordered_images[] = ['type' => 'new', 'index' => $uploadIndex];
+                    $seen_images['new:' . $uploadIndex] = true;
+                }
+            }
+
+            // Preserve older clients or omitted entries by appending any unlisted images.
+            foreach ($car_images as $image) {
+                $imgId = (int)$image['id'];
+                if (!isset($delete_ids[$imgId]) && !isset($seen_images['existing:' . $imgId])) {
+                    $ordered_images[] = ['type' => 'existing', 'id' => $imgId];
+                    $seen_images['existing:' . $imgId] = true;
+                }
+            }
+            foreach ($uploaded as $uploadIndex => $path) {
+                if (!isset($seen_images['new:' . $uploadIndex])) {
+                    $ordered_images[] = ['type' => 'new', 'index' => $uploadIndex];
+                }
+            }
+
+            foreach ($ordered_images as $sortOrder => $image) {
+                if ($image['type'] === 'existing') {
+                    query(
+                        "UPDATE car_images SET sort_order = ? WHERE id = ? AND car_id = ?",
+                        [$sortOrder, $image['id'], $id]
+                    );
+                } else {
+                    query(
+                        "INSERT INTO car_images (car_id, image_path, sort_order) VALUES (?, ?, ?)",
+                        [$id, $uploaded[$image['index']], $sortOrder]
+                    );
                 }
             }
 
@@ -114,18 +166,40 @@ $token = csrf_token();
         <input type="hidden" name="csrf_token" value="<?php echo e($token); ?>">
 
         <div class="form-group">
-            <label>Current Images</label>
+            <div class="image-manager-heading">
+                <div>
+                    <label>Vehicle Images</label>
+                    <p class="image-manager-note">Drag by the grip to reorder, or use the arrows. The first image is the listing thumbnail.</p>
+                </div>
+                <span class="image-manager-count" id="imageOrderSummary" aria-live="polite"><?php echo count($car_images); ?> <?php echo count($car_images) === 1 ? 'image' : 'images'; ?></span>
+            </div>
             <div class="image-manager" id="imageManager">
-                <?php foreach ($car_images as $img): ?>
-                <div class="image-manager-item">
-                    <img src="<?php echo e(car_image(['image_path' => $img['image_path']])); ?>" alt="">
+                <?php foreach ($car_images as $image_index => $img): ?>
+                <div class="image-manager-item<?php echo $image_index === 0 ? ' is-thumbnail' : ''; ?>" data-image-key="existing:<?php echo (int)$img['id']; ?>">
+                    <div class="image-card-preview">
+                        <img src="<?php echo e(car_image(['image_path' => $img['image_path']])); ?>" alt="Vehicle image">
+                        <span class="image-thumbnail-badge"<?php echo $image_index === 0 ? '' : ' hidden'; ?>>Thumbnail</span>
+                    </div>
+                    <div class="image-manager-meta">
+                        <span class="image-sequence-number"><?php echo str_pad((string)($image_index + 1), 2, '0', STR_PAD_LEFT); ?></span>
+                        <span><?php echo e(basename($img['image_path'])); ?></span>
+                    </div>
+                    <div class="image-order-controls">
+                        <div class="image-position-buttons">
+                            <button type="button" class="image-move-up" aria-label="Move image earlier" title="Move earlier"<?php echo $image_index === 0 ? ' disabled' : ''; ?>>&uarr;</button>
+                            <button type="button" class="image-move-down" aria-label="Move image later" title="Move later"<?php echo $image_index === count($car_images) - 1 ? ' disabled' : ''; ?>>&darr;</button>
+                            <span class="image-drag-handle" title="Drag to reorder" aria-label="Drag to reorder">&#9776; <span>Drag</span></span>
+                        </div>
+                        <button type="button" class="image-make-thumbnail"<?php echo $image_index === 0 ? ' disabled' : ''; ?>><?php echo $image_index === 0 ? 'Current thumbnail' : 'Make thumbnail'; ?></button>
+                    </div>
                     <label class="image-remove">
                         <input type="checkbox" name="delete_image[]" value="<?php echo (int)$img['id']; ?>">
-                        Remove
+                        <span>Remove image</span>
                     </label>
+                    <input type="hidden" name="image_order[]" value="existing:<?php echo (int)$img['id']; ?>">
                 </div>
                 <?php endforeach; ?>
-                <?php if (empty($car_images)): ?><span class="text-muted">No images.</span><?php endif; ?>
+                <?php if (empty($car_images)): ?><div class="image-manager-empty">No images yet. Add images below to choose a thumbnail.</div><?php endif; ?>
             </div>
         </div>
         <div class="form-row">
@@ -195,7 +269,6 @@ $token = csrf_token();
         <div class="form-group">
             <label for="images">Add More Images (JPG, JPEG, PNG, WEBP - max 5MB each, multiple allowed)</label>
             <input type="file" id="images" name="images[]" accept=".jpg,.jpeg,.png,.webp" multiple>
-            <div class="image-preview" id="imagePreview"></div>
         </div>
         <div class="form-actions">
             <button type="submit" class="btn btn-primary btn-lg">Save Changes</button>

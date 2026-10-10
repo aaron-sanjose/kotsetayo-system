@@ -62,7 +62,7 @@ switch ($sort) {
     default:           $orderBy = 'c.year DESC, c.id DESC'; break;
 }
 
-$sql = "SELECT c.*, (SELECT ci.image_path FROM car_images ci WHERE ci.car_id = c.id ORDER BY ci.id LIMIT 1) AS image_path
+$sql = "SELECT c.*, (SELECT ci.image_path FROM car_images ci WHERE ci.car_id = c.id ORDER BY ci.sort_order, ci.id LIMIT 1) AS image_path
         FROM cars c WHERE " . implode(' AND ', $where) . " ORDER BY $orderBy";
 $cars = fetch_all($sql, $params);
 $brands = fetch_all("SELECT DISTINCT brand FROM cars WHERE status = 'Available' ORDER BY brand");
